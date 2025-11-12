@@ -10,7 +10,24 @@ Further progression on the project will take place based on what layout the inte
 
 10/11/2025: (Donnacba O Donoghue)
 Dylan is working on the forms and book class.
-Rob is working on uml diagrams.
+Rob is working on uml diagrams & creating basic form structure in Visual Studio (e.g. create book, remove book, update book, search ).
 Donnacha is doing pull requests and document analysis.
+Calvin is working on add books and remove books code files.
 
 Considering the use of Azure DevOps. Decided not to use it as we can do all documentation on GitHub (It was set up just in case. Deleted after discussion)
+
+12/11/2025: (Donnacha O Donoghue)
+Donnacha cloned and reviewed the prototype form
+
+Form will be renamed for easier file location.
+Buttons and forms have generic names and labels. Will be changed for better legibility.
+Buttons haven't been used yet. Created a constructor when clicked.
+Prototype helped to establish a starting point for code development.
+Calvin is working on CreateBooks and RemoveBook
+
+Debate over hard/soft delete. (Integrity Rules). Imp
+Rob will develop basic forms for create book, remove book, update book, search, etc. over weekend. Based on feedback on prototype form.
+
+Color gradient considered - 'Tardis blue (medium blue) to Tardis green (medium green)'.
+
+Consider a librarian login - encapsulation.
