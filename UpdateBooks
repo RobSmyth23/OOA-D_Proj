@@ -1,0 +1,144 @@
+//Updating library books
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Linq;
+
+namespace JohnsStoreStock
+{
+    public partial class frmUpdateBooks : Form
+    {
+        frmMainMenu parent;
+        Library theBook = new Library();
+
+        public frmUpdateBooks()
+        {
+            InitializeComponent();
+        }
+
+        public frmUpdateBooks(frmMainMenu parent)
+        {
+            InitializeComponent();
+            this.parent = parent;
+        }
+
+        public void mnuBack_Click(object sender, EventArgs e)
+        {
+            this.Close()
+            parent.Visible = true;
+        }
+        private mnuExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnUpdateBooks_Click(object sender, EventArgs e)
+        {
+            if(txtBookID.Text.Equals(""))
+            {
+                MessageBox.Show("Book ID must be assigned", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtBookID.Focus();
+                return;
+            }
+            if(txtBookAuthor.Text.Equals(""))
+            {
+                MessageBox.Show("Name of Author must be entered", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtBookAuthor.Focus();
+                return;
+            }
+            if(txtBookname.Text.Equals(""))
+            {
+                MessageBox.Show("Name of book must be entered", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtBookname.Focus();
+                return;
+            }
+            if(txtBookDescription.Text.Equals(""))
+            {
+                MessageBox.Show("Description of book must be entered", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtBookDescription.Focus();
+                return;
+            }
+            if(txtBookGenre.Text.Equals(""))
+            {
+                MessageBox.Show("Book Genre must be assigned", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtBookGenre.Focus();
+                return;
+            }
+
+            aBook.updateBook();
+
+            MessageBox.Show("New Library Book Details entered has been updated", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            txtBookID.Clear();
+            txtBookAuthor.Clear();
+            txtBookname.Clear();
+            txtBookDescription.Clear();
+            txtBookGenre.Clear();
+            txtBookAuthor.Focus();
+
+            this.Close();
+            parent.Visible = true;
+        }
+
+        private void btnSearchBook_Click(object sender, EventArgs e)
+        {
+            if(txtSearchBook.Text.Equals(""))
+            {
+                MessageBox.Show("Name of Library Book must be entered, Please re-enter", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtSearchBook.Focus();
+                return;
+            }
+
+            grdListLibraryBooks.DataSource = Library.findBook(txtSearchBook.Text).Tables["Library"];
+
+            if(grdListLibraryBooks.Rows.Count == 0)
+            {
+                MessageBox.Show("No Library Book found");
+                txtSearchBook.Focus();
+                return;
+            }
+
+            grdListLibraryBooks.Visible = true;
+        }
+        private void grdListLibraryBooks_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int Id = Convert.ToInt32(grdListLibraryBooks.Rows[grdListLibraryBooks.CurrentCell.RowIndex].Cells[0].Value.ToString());
+
+            theBook.getBook(Id);
+
+            txtBookID.Text = theBook.getBookID().ToString("000");
+            txtBookAuthor.Text = theBook.getBookAuthor();
+            txtBookname.Text = theBook.getBookname();
+            txtBookDescription.Text = theBook.getBookDescription();
+            txtBookGenre.Text = theBook.getBookGenre();
+
+            grpLibraryBooks.Visible = true;
+        }
+
+        private void frmUpdateBooks_Load(object sender, EventArgs e)
+        {
+            grdListLibraryBooks.CellClick += grdListLibraryBooks_CellClick;
+            txtBookID.ReadOnly = true;
+        }
+
+        private void mnuCreateBooks_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            frmCreateBooks nextForm = new frmCreateBooks();
+            nextForm.Show();
+        }
+        private void mnuRemoveBooks_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            frmRemoveBooks nextForm = new frmRemoveBooks();
+            nextForm.Show();
+        }
+    }
+}
