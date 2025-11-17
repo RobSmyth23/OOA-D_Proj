@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JohnsStoreStock
+namespace LibrarySystem
 {
     // AEIP used, inheritance: EBook inherits from Book. /////////////////////////////////////////
     public class EBook : Book

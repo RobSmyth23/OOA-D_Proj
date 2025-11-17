@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace JohnsStoreStock
+namespace LibrarySystem
 {
     // AEIP - Abstraction: This class represents the concept of a Book.
     // We hide the details of how it works internally (like how checkout or return is handled).

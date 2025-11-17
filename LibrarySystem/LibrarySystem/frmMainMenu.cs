@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace JohnsStoreStock
+namespace LibrarySystem
 {
     public partial class frmMainMenu : Form
     {
