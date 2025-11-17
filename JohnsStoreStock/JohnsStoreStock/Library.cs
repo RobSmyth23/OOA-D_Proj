@@ -12,12 +12,12 @@ namespace LibrarySystem
     public class Library
     {
         // Hard-coded data for prototype (no database)
-        private List<Book> books = new List<Book>()
+        public List<Book> books = new List<Book>()
         {
-            new Book(1, "The Hobbit", "J.R.R. Tolkien"),
-            new Book(2, "1984", "George Orwell"),
-            new Book(3, "Clean Code", "Robert C. Martin"),
-            new EBook(4, "C# in Depth", "Jon Skeet", 5.2)
+            new Book(1, "The Hobbit", "J.R.R. Tolkien", "Fantastic series"),
+            new Book(2, "1984", "George Orwell", "Fantastic series"),
+            new Book(3, "Clean Code", "Robert C. Martin", "Fantastic series"),
+            new EBook(4, "C# in Depth", "Jon Skeet", 5.2, "Fantastic series")
         };
 
         // SOLID - Liskov Substitution:

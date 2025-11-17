@@ -10,7 +10,9 @@ namespace LibrarySystem
     public class EBook : Book
     {
         private double fileSizeMB; // Random value added on so it's different, set it to whatever you want like 1.3 or 2.7, doesn't mean anything
+        private string description;
 
+        public string Description => description;
         public double GetFileSizeMB()
         {
             return fileSizeMB;
@@ -21,10 +23,11 @@ namespace LibrarySystem
             fileSizeMB = value;
         }
 
-        public EBook(int id, string title, string author, double fileSizeMB)
-            : base(id, title, author) // parent constructor call, it calls that then calls this constructor for the fileSizeMB variable
+        public EBook(int id, string title, string author, double fileSizeMB, string description)
+            : base(id, title, author, description) // parent constructor call, it calls that then calls this constructor for the fileSizeMB variable
         {
             this.fileSizeMB = fileSizeMB;
+            this.description = description;
         }
 
         // AEIP - Polymorphism: overrides DisplayInfo from Book to include file size from EBook
@@ -32,6 +35,7 @@ namespace LibrarySystem
         {
             base.displayBookInfo();
             Console.WriteLine("File Size: " + fileSizeMB + " MB");
+            Console.WriteLine("Description: " + description);
         }
     }
 }
