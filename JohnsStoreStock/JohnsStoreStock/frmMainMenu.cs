@@ -82,7 +82,7 @@ namespace LibrarySystem
 
         private void returnBooksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmReturnBook returnBookForm = new frmReturnBook();
+            frmReturnBook returnBookForm = new frmReturnBook(library, this);
             this.Hide();
             returnBookForm.Show();
 

@@ -126,6 +126,9 @@
     <EmbeddedResource Include="frmNewCustomer.resx">
       <DependentUpon>frmNewCustomer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReturnBook.resx">
+      <DependentUpon>frmReturnBook.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSearchBook.resx">
       <DependentUpon>frmSearchBook.cs</DependentUpon>
     </EmbeddedResource>
