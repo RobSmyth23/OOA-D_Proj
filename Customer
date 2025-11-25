@@ -11,6 +11,7 @@ namespace LibrarySystem
         private string Name;
         private int Age;
         private string Email;
+        public List<Book> CheckedOutBooks {get; private set;}
         public static int booksCheckoutCount = 0;
 
         public int getCheckoutCount => booksCheckoutCount;
