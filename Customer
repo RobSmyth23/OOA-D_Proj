@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace LibrarySystem
 {
-    // AEIP - Abstraction: This class represents the concept of a Book.
-    // We hide the details of how it works internally (like how checkout or return is handled).
-    public class Book
+    // AEIP - Abstraction: This class represents the concept of a Customer.
+    public class Customer
     {
         // AEIP - Encapsulation: Keep fields private to protect the data.
         private int AccountID;
@@ -68,7 +67,6 @@ namespace LibrarySystem
             this.Email = email;
         }
 
-        // AEIP - Polymorphism: This method can be overridden later by subclasses (like EBook).
         public virtual void displayCustomerInfo()
         {
             Console.WriteLine("[" + AccountID + "] " + Name + "\nAge:  " + Age + "\nEmail: " + Email);
