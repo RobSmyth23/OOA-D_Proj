@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JohnsStoreStock;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +15,6 @@ namespace LibrarySystem
     public partial class frmReturnBook : Form
     {
         private Library library;
-        private Book book;
         private Customer customer;
         public frmMainMenu mainMenu;
         private frmMainMenu frmMainMenu;
@@ -28,27 +28,40 @@ namespace LibrarySystem
 
         private void btnReturnBook_Click(object sender, EventArgs e)
         {
-            if (cboName.Text != ("") && txtTitle.Text != ("")) // If both are selected.
+            if (!string.IsNullOrEmpty(cboName.Text) && !string.IsNullOrEmpty(txtTitle.Text))
             {
-               // Book.ReturnBook();
-               bool success = library.Return(bookID)
+                /*Customer bookToReturn = customer.ShowCheckedOutBooks(txtTitle);
 
-               if(success)
-               {
-                   MessageBox.Show("Book returned successfully!");
-               }
-               else
-               {
-                   MessageBox.Show("Return Failed. Customer does not have this book");
-               }
+                if (customer != null)
+                {
+                    if (bookToReturn != null)
+                    {
+                        bool success = Book.ReturnBook(txtTitle);
+                        if (success)
+                        {
+                            MessageBox.Show("Book returned successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Book was not checked out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Book not found in customer's checked-out list.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Customer not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }*/
             }
             else
             {
                 MessageBox.Show("There is nothing selected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); //Will default to this
-                //Library.Return();
+                cboName.Select();
             }
-
-            ResetForm();
         }
 
         private void ResetForm()
