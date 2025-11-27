@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JohnsStoreStock;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,6 +24,40 @@ namespace LibrarySystem
             //and telephone and email must not match another customers, uless the customer has the same address and last name of the current customer.
 
             //validation and confirmation here^^^
+            if(string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                MessageBox.Show("Please re-enter the customer's name", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtName.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtAge.Text))
+            {
+                MessageBox.Show("Please re-enter the customer's age", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtAge.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                MessageBox.Show("Please re-enter the customer's email address", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtPhoneNo.Text))
+            {
+                MessageBox.Show("Please re-enter the customer's phone number", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPhoneNo.Focus();
+                return;
+            }
+            if(cboMember.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a membership status of the customer", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string selectedStatus = cboMember.SelectedItem.ToString();
+
+            Customer aCustomer = new Customer();
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)
