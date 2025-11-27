@@ -15,6 +15,7 @@ namespace LibrarySystem
     {
         private Library library;
         private Book book;
+        private Customer customer;
         public frmMainMenu mainMenu;
         private frmMainMenu frmMainMenu;
 
