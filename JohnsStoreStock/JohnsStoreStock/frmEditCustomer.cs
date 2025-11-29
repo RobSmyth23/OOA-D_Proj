@@ -22,6 +22,17 @@ namespace LibrarySystem
         private void dtGridResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //when an item is clicked, the group box fills with relevant infomration according to search string.
+            if(e.RowIndex < 0)
+            {
+                return;
+            }
+            int selectedID = Convert.ToInt32(dtGridResults.Rows[e.RowIndex].Cells["AccountID"].Value);
+            Customer selectedCustomer = Customer.getCustomer(selectedID);
+
+            if(selectedCustomer != null)
+            {
+                displayCustomerDetails(selectedCustomer);
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -35,8 +46,7 @@ namespace LibrarySystem
             // Search through customers
             var results = library.Customer
                 .Where(b => b.getName.ToLower().Contains(searchText) ||
-                            b.getEmail.ToLower().Contains(searchText) ||
-                            (b is Customer cust && PhoneNo.Description.ToLower().Contains(searchText)))
+                            b.getEmail.ToLower().Contains(searchText))
                 .ToList();
 
             // Display results
@@ -59,6 +69,15 @@ namespace LibrarySystem
             mainMenu.Show();
 
             this.Hide();
+        }
+
+        private void displayCustomerDetails(Customer c)
+        {
+            txtAccountID.Text = c.AccountID.ToString();
+            txtName.Text = c.Name;
+            txtAge.Text = c.Age.ToString();
+            txtEmail.Text = c.Email;
+            txtMembershipStatus.Text = c.MembershipStatus;
         }
     }
 }
