@@ -15,6 +15,7 @@ namespace JohnsStoreStock
         private int Age;
         private string Email;
         private string MembershipStatus;
+        public static LinkedList<Customer> AllCustomers = new LinkedList<Customer>();
         public LinkedList<Book> CheckedOutBooks { get; set; } = new LinkedList<Book>();
         public static int booksCheckoutCount = 0;
 
