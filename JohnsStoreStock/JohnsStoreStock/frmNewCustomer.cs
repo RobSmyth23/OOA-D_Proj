@@ -73,6 +73,8 @@ namespace LibrarySystem
             string selectedStatus = cboMember.SelectedItem.ToString();
 
             Customer aCustomer = new Customer(Customer.getNextAccountID, txtName.Text, age, txtEmail.Text, txtPhoneNo.Text, selectedStatus);
+            Customer.Customers.AddLast(aCustomer);
+            
             txtName.Clear();
             txtAge.Clear();
             txtEmail.Clear();
