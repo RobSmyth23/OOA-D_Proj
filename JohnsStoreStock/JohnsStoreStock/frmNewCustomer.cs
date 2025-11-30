@@ -30,7 +30,7 @@ namespace LibrarySystem
                 txtName.Focus();
                 return;
             }
-            if (string.IsNullOrWhiteSpace(txtAge.Text))
+            if (!int.TryParse(txtAge.Text, out int age))
             {
                 MessageBox.Show("Please re-enter the customer's age", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtAge.Focus();
@@ -54,9 +54,30 @@ namespace LibrarySystem
                 return;
             }
 
+            bool conflictExists = Customer.Customers.Any(c =>
+            (c.Email == email || c.PhoneNo == phone) &&
+            !(c.Surname.Equals(lastName, StringComparison.OrdinalIgnoreCase))
+            );
+
+            if (conflictExists)
+            {
+                MessageBox.Show(
+                    "This phone number or email is already in use by another customer.",
+                    "Duplicate Found",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+        
+                return;
+            }
+
             string selectedStatus = cboMember.SelectedItem.ToString();
 
-            Customer aCustomer = new Customer();
+            Customer aCustomer = new Customer(Customer.getNextAccountID, txtName.Text, age, txtEmail.Text, txtPhoneNo.Text, selectedStatus);
+            txtName.Clear();
+            txtAge.Clear();
+            txtEmail.Clear();
+            txtPhoneNo.Clear();
+            cboMember.SelectedItem == null;
 
         }
 
