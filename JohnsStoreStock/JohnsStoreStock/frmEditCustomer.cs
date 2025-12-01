@@ -12,11 +12,13 @@ namespace LibrarySystem
 {
     public partial class frmEditCustomer : Form
     {
+        frmMainMenu parent;
         private Customer customer;
-        public frmEditCustomer(Customer customerInstance)
+        public frmEditCustomer(frmMainMenu parent, Customer customerInstance)
         {
             InitializeComponent();
             customer = customerInstance;
+            this.parent = parent;
         }
 
         private void dtGridResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -65,10 +67,8 @@ namespace LibrarySystem
         private void btnBack_Click(object sender, EventArgs e)
         {
             //returns to main menu
-            frmMainMenu mainMenu = new frmMainMenu();
-            mainMenu.Show();
-
-            this.Hide();
+            this.Close();
+            parent.Visible = true;
         }
 
         private void displayCustomerDetails(Customer c)
