@@ -13,6 +13,7 @@ namespace LibrarySystem
 {
     public partial class frmNewCustomer : Form
     {
+        frmMainMenu mainMenu;
         public frmNewCustomer()
         {
             InitializeComponent();
@@ -54,9 +55,12 @@ namespace LibrarySystem
                 return;
             }
 
+            string[] nameParts = txtName.Text.Trim().Split(' ');
+            string lastName = nameParts[nameParts.Length - 1];
+
             bool conflictExists = Customer.AllCustomers.Any(c =>
             (c.getEmail() == txtEmail.Text || c.getPhoneNo() == txtPhoneNo.Text) &&
-            !(c.Surname.Equals(lastName, StringComparison.OrdinalIgnoreCase))
+            !(c.getName().Equals(lastName, StringComparison.OrdinalIgnoreCase))
             );
 
             if (conflictExists)
@@ -86,6 +90,8 @@ namespace LibrarySystem
         private void btnBack_Click(object sender, EventArgs e)
         {
             //returns to main menu
+            this.Hide();
+            mainMenu.Show();
         }
 
         private void cboMember_SelectedIndexChanged(object sender, EventArgs e)
