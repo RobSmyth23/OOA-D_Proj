@@ -22,6 +22,11 @@ namespace LibrarySystem
             customer = customerInstance;
         }
 
+        public frmEditCustomer()
+        {
+            InitializeComponent();
+        }
+
         private void dtGridResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //when an item is clicked, the group box fills with relevant infomration according to search string.

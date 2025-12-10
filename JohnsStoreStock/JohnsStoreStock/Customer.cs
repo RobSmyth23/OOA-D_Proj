@@ -85,7 +85,7 @@ namespace JohnsStoreStock
             this.MembershipStatus = membershipStatus;
         }
         
-        public void ShowCheckedOutBooks()
+        public void ShowCheckedOutBooks(string text)
         {
             Console.WriteLine($"{Name}'s Checked Out Books:");
             foreach (var book in CheckedOutBooks)

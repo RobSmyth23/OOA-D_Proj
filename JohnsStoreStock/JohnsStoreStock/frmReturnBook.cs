@@ -24,42 +24,32 @@ namespace LibrarySystem
             InitializeComponent();
             this.library = library;
             this.frmMainMenu = frmMainMenu;
+            Customer customer = Customer.AllCustomers.FirstOrDefault(c => c.getName() == cboName.Text);
+
         }
 
         private void btnReturnBook_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(cboName.Text) && !string.IsNullOrEmpty(txtTitle.Text))
+            var customer = Customer.AllCustomers.FirstOrDefault(c => c.getName() == cboName.Text);
+            if (customer != null && !string.IsNullOrEmpty(txtTitle.Text))
             {
-                /*Customer bookToReturn = customer.ShowCheckedOutBooks(txtTitle);
+                Book selectedBook = customer.CheckedOutBooks.FirstOrDefault(b => b.getTitle == txtTitle.Text);
 
-                if (customer != null)
+                if (selectedBook != null)
                 {
-                    if (bookToReturn != null)
-                    {
-                        bool success = Book.ReturnBook(txtTitle);
-                        if (success)
-                        {
-                            MessageBox.Show("Book returned successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Book was not checked out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Book not found in customer's checked-out list.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    library.Return(selectedBook.getID);
+                    customer.CheckedOutBooks.Remove(selectedBook);
+
+                    MessageBox.Show("Book returned successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Customer not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                }*/
+                    MessageBox.Show("Book not found in customer's checked-out list.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("There is nothing selected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); //Will default to this
+                MessageBox.Show("Please select a customer and a book.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 cboName.Select();
             }
         }
@@ -79,21 +69,26 @@ namespace LibrarySystem
 
         private void frmReturnBook_Load(object sender, EventArgs e)
         {
-            /*  cboName.DataSource = library.Books.Select(b => b.getAuthor).ToList();
-           cboName.SelectedIndex = -1;
-           cboTitle.DataSource = library.Books.Select(b => b.getTitle).ToList();
-           cboTitle.SelectedIndex = -1*/   
-
+            cboName.DataSource = Customer.AllCustomers.Select(c => c.getName()).ToList();
+            cboName.SelectedIndex = -1;
         }
 
         private void cboName_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            var customer = Customer.AllCustomers.FirstOrDefault(c => c.getName() == cboName.Text);
+            if (customer != null && customer.CheckedOutBooks.Any())
+            {
+                // Show the first book title in the TextBox
+                txtTitle.Text = customer.CheckedOutBooks.First().getTitle;
+            }
+            else
+            {
+                txtTitle.Text = string.Empty;
+            }
         }
 
         private void txtTitle_TextChanged(object sender, EventArgs e)
         {
-
         }
     }
 }
