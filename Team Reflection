@@ -31,3 +31,9 @@ Rob will develop basic forms for create book, remove book, update book, search, 
 Color gradient considered - 'Tardis blue (medium blue) to Tardis green (medium green)'.
 
 Consider a librarian login - encapsulation.
+
+17/11/2025 - 05/12/2025: (Calvin Wong)
+Been working on the Customer Class consisting of Name, Age, Email Address, Phone No., and MemberShipStatus
+Updated the EditCustomer and NewCustomer WinForms, added getNextAccountID() in the Customer class
+Updated the NewCustomer for the final validation.
+Added a commented add-on called getNextBookID() in the Book class for Code Smell Principles
