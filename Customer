@@ -3,20 +3,16 @@ using System.Collections.Generic;
 
 namespace LibrarySystem
 {
-    // AEIP - Abstraction: This class represents the concept of a Customer.
     public class Customer
     {
-        // AEIP - Encapsulation: Keep fields private to protect the data.
         private int AccountID;
         private string Name;
         private int Age;
         private string Email;
         public LinkedList<Book> CheckedOutBooks {get; set;} = new LinkedList<Book>();
         public static int booksCheckoutCount = 0;
-
         public int getCheckoutCount => booksCheckoutCount;
 
-        // Constructor
         public Customer(int AccountID, string Name, int Age, string Email)
         {
             this.AccountID = AccountID;
@@ -26,22 +22,24 @@ namespace LibrarySystem
             booksCheckoutCount = 0;
         }
 
-        // Public properties to safely access data (Encapsulation)
         public int getAccountID { 
             get { 
                 return AccountID;
             }
         }
+
         public string getName {
             get {
                 return Name;
             }
         }
+
         public int getAge { 
             get {
                 return Age; 
             }
         }
+
         public string getEmail
         {
             get
@@ -49,10 +47,12 @@ namespace LibrarySystem
                 return Email;
             }
         }
+
         public void setAccountID(int accountID)
         {
             this.AccountID = accountID;
         }
+
         public void setName(string name)
         {
             this.Name = name;
@@ -68,7 +68,7 @@ namespace LibrarySystem
             this.Email = email;
         }
 
-        publilc void ShowCheckedOutBooks()
+        public void ShowCheckedOutBooks()
         {
             Console.WriteLine($"{Name}'s Checked Out Books:");
             foreach(var book in CheckedOutBooks)
@@ -76,6 +76,7 @@ namespace LibrarySystem
                 Console.WriteLine(" - " + book.BookID + ", " + book.Name + ", " + book.Author);
             }
         }
+
         public override string ToString()
         {
             return"";
