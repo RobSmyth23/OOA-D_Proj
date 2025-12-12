@@ -1,0 +1,97 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class Library {
++ Customers: LinkedList
++ books: List
++ Library()
++ Books: List
++ Search(string): Book
++ Checkout(int): void
++ Return(int): void
++ {static} addBook(String,String,String,Double,Library,bool): void
+}
+
+Library "1" --> "0..*" Book: includes
+Library "1" --> "0..*" EBook: includes
+
+Book "1" -> "1" EBook: has a
+Customer "1" -> "1" Book: reads
+
+class Book {
+- id: int
+- title: string
+- author: string
+- description: string
+- isCheckedOut: bool
++ {static} checkoutCount: int
+
++ Book(int,string,string,string)
++ getID: int
++ getAuthor: string
++ getCheckOutStatus: bool
++ getDescription: string
++ getCheckoutCount: int
+
++ setTitle(string): void
++ setAuthor(string): void
++ setDescription(string): void
+
++ Checkout(): void
++ ReturnBook(): void
++ displayBookInfo(): void
+}
+
+class EBook{
+- fileSizeMB: double
+- description: string
+
++ Description: string
++ GetFileSizeMB(): double
++ SetFileSizeMB(double): void
+
++ EBook(int,string,string,double,string)
++ displayBookInfo(): void
+}
+
+class Customer{
+- AccountID: int
+- Name: string
+- Age: int
+- Email: string
+- PhoneNo: string
+- MembershipStatus: string
+
++ AccountIDColumn: int
++ NameColumn: string
++ AgeColumn: int
++ EmailColumn: string
++ PhoneNoColumn: string
++ MembershipStatusColumn: string
+
++ {static} AllCustomers: LinkedList
++ CheckedOutBooks: LinkedList
++ {static} booksCheckoutCount: int
+
++ Customer(string, int, string, string, string)
++ getAccountID: int
++ getName: string
++ getAge: int
++ getEmail: string
++ getPhoneNo: string
++ getMembershipStatus: string
++ {static} getCheckoutCount: int
+
++ setAccountID(int): void
++ setName(string): void
++ setAge(int): void
++ setEmail(string): void
++ setMembershipStatus(string): void
+
++ ShowCheckedOutBooks(string): void
++ ToString(): string
++ {static} getNextAccountID(): int
++ {static} getCustomer(int): Customer
+}
+@enduml
